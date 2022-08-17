@@ -107,7 +107,7 @@ contract Swapping {
 
         // control flow to determine the price differenctiation
 
-        swapper = pricePerToken * swappersPrice / 100;
+        swapper = testTokenPrice /  swappersPrice;
     }
 
 

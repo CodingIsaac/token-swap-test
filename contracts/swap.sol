@@ -5,9 +5,9 @@ import "./testToken.sol";
 import "./ISwapERC.sol";
 
 
-contract Swapping is testToken {
-    IERC20 token1;
-    ERC20 testToken;
+contract Swapping {
+    // IERC20 token1;
+    // ERC20 createdToken;
 
     /**
      * determine the price per token
@@ -46,9 +46,9 @@ contract Swapping is testToken {
     mapping (address => orderBook) public placeOrder;
     // mapping (uint => orderBook) tokenUpdate;
 
-    constructor(IERC20 _token1, ERC20 _testToken) {
-        token1 = IERC20(_token1);
-        testToken = ERC20(_testToken);
+    constructor() {
+        // token1 = IERC20(_token1);
+        // createdToken = ERC20(_testToken);
 
 
         owner = msg.sender;
@@ -91,7 +91,7 @@ contract Swapping is testToken {
 
 
 
-        _transfer((msg.sender), to.ofReceiver, to.ownedToken);
+        IERC20().transfer((msg.sender), to.ofReceiver, to.ownedToken);
 
         // emit Transfer(msg.sender, to.ofReceiver, to.ownedToken);
 
@@ -101,7 +101,7 @@ contract Swapping is testToken {
     }
 
     function setTokenPrice(uint ownersPrice, uint swappersPrice) private pure returns(uint swapper) {
-        uint testTokenPrice = pricePerToken;
+        uint testTokenPrice = ERC20().pricePerToken;
         orderBook memory toSet = placeOrder[msg.sender];
         toSet.setTokenPrice = swappersPrice;
 
